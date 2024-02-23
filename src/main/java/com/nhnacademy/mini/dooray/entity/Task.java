@@ -1,12 +1,11 @@
 package com.nhnacademy.mini.dooray.entity;
 
-import com.nhnacademy.mini.dooray.domain.StateType;
-import jakarta.persistence.*;
+import com.nhnacademy.mini.dooray.domain.ProjectState;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -14,7 +13,9 @@ import java.util.List;
 @Entity
 @Table(name = "tasks")
 public class Task {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     private Long taskId;
 
@@ -33,9 +34,11 @@ public class Task {
     private String taskContent;
 
     @Column(name = "task_created_at")
-    private Timestamp taskCreatedAt;
+    private LocalDateTime taskCreatedAt;
 
     @Column(name = "task_state")
-    private StateType state;
+    private ProjectState state;
 
+    @OneToMany(mappedBy = "task")
+    private List<Comment> comments;
 }

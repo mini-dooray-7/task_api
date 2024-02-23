@@ -1,0 +1,15 @@
+### post task.
+
+POST localhost:8080/tasks/project/1
+Host: localhost
+Content-Type: application/json
+
+{
+  "taskUserId":"tester",
+  "taskTitle":"task1",
+  "taskContent":"message"
+}
+
+
+### get task.
+GET localhost:8080/projects/

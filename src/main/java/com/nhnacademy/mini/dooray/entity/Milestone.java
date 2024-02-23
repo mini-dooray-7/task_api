@@ -1,8 +1,9 @@
 package com.nhnacademy.mini.dooray.entity;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class Milestone {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "milestone_id")
     private Long milestoneId;
 

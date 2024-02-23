@@ -1,0 +1,23 @@
+### get all projects
+GET localhost:8080/projects
+Host: localhost
+
+
+### get project by id
+GET localhost:8080/projects/1
+Host: localhost
+
+
+### post project
+POST localhost:8080/projects
+Content-Type: application/json
+
+{
+  "projectAdmins": ["user1", "user2", "user3"],
+  "projectName": "proj1"
+}
+
+
+### delete project
+DELETE localhost:8080/1
+Host: localhost

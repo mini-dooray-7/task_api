@@ -1,9 +1,10 @@
 package com.nhnacademy.mini.dooray.entity;
 
-import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Bean;
 
+import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @Entity
@@ -12,6 +13,7 @@ public class Comment {
 
     @Id
     @Column(name = "comment_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
     @ManyToOne
@@ -20,5 +22,4 @@ public class Comment {
 
     @Column(name = "comment_content")
     private String commentContent;
-
 }
