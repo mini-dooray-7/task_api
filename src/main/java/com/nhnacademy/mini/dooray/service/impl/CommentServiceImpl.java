@@ -1,5 +1,6 @@
 package com.nhnacademy.mini.dooray.service.impl;
 
+import com.nhnacademy.mini.dooray.dto.CommentDto;
 import com.nhnacademy.mini.dooray.entity.Task;
 import com.nhnacademy.mini.dooray.exception.NotFoundCommentException;
 import com.nhnacademy.mini.dooray.repository.CommentRepository;
@@ -23,6 +24,11 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getComments(Long taskId) {
         return commentRepository.findAllCommentByTaskId(taskId);
+    }
+
+    @Override
+    public List<CommentDto> getCommentDto(Long taskId) {
+        return commentRepository.findCommentsByTaskId(taskId);
     }
 
     @Override

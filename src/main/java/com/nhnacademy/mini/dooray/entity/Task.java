@@ -9,9 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "tasks")
@@ -45,18 +45,13 @@ public class Task {
 
     @NotNull
     @Column(name = "task_created_at")
-    private LocalDateTime taskCreatedAt;
+    private LocalDateTime taskCreatedAt = LocalDateTime.now();
 
     @NotNull
     @Column(name = "task_state")
-    private ProjectState state;
+    private ProjectState state = ProjectState.ACTIVE;
 
     @OneToMany(mappedBy = "task", orphanRemoval = true)
     @JsonManagedReference
     private Set<Comment> comments;
-
-    public Task() {
-        this.taskCreatedAt = LocalDateTime.now();
-        this.state = ProjectState.ACTIVE;
-    }
 }

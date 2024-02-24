@@ -21,17 +21,8 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             "t.taskTitle as taskTitle, " +
             "t.taskContent as taskContent, " +
             "t.taskCreatedAt as taskCreatedAt, " +
-            "t.state as state, " +
-            "c.commentId as commentId, " +
-            "c.commentUserId as commentUserId, " +
-            "c.commentContent as commentContent " +
+            "t.state as state " +
             "from Task t " +
-            "left join t.comments c " +
             "where t.taskId = :id")
-    TaskDto findTaskDtoBy(Long id);
-
-//    TaskDto findTaskDtoBy(Long id);
-
-//    @Query("select t from Task t where t.project.projectId = :projectId and t.taskId = :taskId")
-//    Task findByProjectId(@Param("projectId") Long projectId, @Param("taskId") Long taskId);
+    TaskDto findTaskDtoById11(@Param("id") Long id);
 }

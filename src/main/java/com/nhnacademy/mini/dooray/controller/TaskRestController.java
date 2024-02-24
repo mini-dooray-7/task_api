@@ -1,9 +1,11 @@
 package com.nhnacademy.mini.dooray.controller;
 
+import com.nhnacademy.mini.dooray.dto.TaskDetail;
 import com.nhnacademy.mini.dooray.dto.TaskDto;
 import com.nhnacademy.mini.dooray.entity.Project;
 import com.nhnacademy.mini.dooray.entity.Task;
 import com.nhnacademy.mini.dooray.request.TaskPostDto;
+import com.nhnacademy.mini.dooray.service.CommentService;
 import com.nhnacademy.mini.dooray.service.ProjectService;
 import com.nhnacademy.mini.dooray.service.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +21,14 @@ import java.util.Set;
 public class TaskRestController {
     private final ProjectService projectService;
     private final TaskService taskService;
+    private final CommentService commentService;
 
     @GetMapping("/{id}")
-    public TaskDto getTask(@PathVariable Long id) {
-        System.out.println();
-        return taskService.getTaskDto(id);
-//        return null;
+    public TaskDetail getTask(@PathVariable Long id) {
+        TaskDto taskDto = taskService.getTaskDto(id);
+//        taskDto.setComments(commentService.getCommentDto(id));
+
+        return new TaskDetail(taskDto, commentService.getCommentDto(id));
     }
 
     @GetMapping("/projects/{projectId}")
