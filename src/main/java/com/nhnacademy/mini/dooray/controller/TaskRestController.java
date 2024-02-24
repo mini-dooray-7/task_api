@@ -1,43 +1,52 @@
 package com.nhnacademy.mini.dooray.controller;
 
+import com.nhnacademy.mini.dooray.dto.TaskDto;
 import com.nhnacademy.mini.dooray.entity.Project;
-import com.nhnacademy.mini.dooray.request.ProjectPostRequest;
+import com.nhnacademy.mini.dooray.entity.Task;
+import com.nhnacademy.mini.dooray.request.TaskPostDto;
 import com.nhnacademy.mini.dooray.service.ProjectService;
+import com.nhnacademy.mini.dooray.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/tasks")
 public class TaskRestController {
-    private final ProjectService service;
+    private final ProjectService projectService;
+    private final TaskService taskService;
 
     @GetMapping("/{id}")
-    public Project getProject(@PathVariable Long id) {
-        return service.getProject(id);
+    public TaskDto getTask(@PathVariable Long id) {
+        System.out.println();
+        return taskService.getTaskDto(id);
+//        return null;
     }
 
-    @GetMapping
-    public List<Project> getProject() {
-        return service.getProjects();
+    @GetMapping("/projects/{projectId}")
+    public List<Task> getTasks(@PathVariable Long projectId) {
+        return taskService.getTasks(projectId);
     }
 
-    @PostMapping
-    public void postProject(ProjectPostRequest projectPostRequest) {
-        Project project = service.toProject(projectPostRequest);
+    @PostMapping("/projects/{projectId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save(@PathVariable Long projectId, @RequestBody TaskPostDto taskPostDto) {
+        Project project = projectService.getProject(projectId);
 
-        service.save(project);
+        taskService.save(project, taskPostDto);
     }
 
     @DeleteMapping("/{id}")
     public void deleteProject(@PathVariable Long id) {
-        service.delete(id);
+        taskService.deleteTask(id);
     }
 
     @PutMapping
-    public void a(Project project) {
-
+    public void update(Project project) {
+        // todo implement update.
     }
 }

@@ -1,0 +1,29 @@
+### post comment.
+
+POST localhost:8080/comments/tasks/1
+Host: localhost
+Content-Type: application/json
+
+{
+  "commentUserId": "user1",
+  "commentContent": "some text"
+}
+
+### get comments, 1번 task에 달려있는 모든 comment들을 들고옵니다.
+POST localhost:8080/comments/tasks/1
+Host: localhost
+
+
+### delete comment
+DELETE localhost:8080/comments/1
+Host: localhost
+
+
+### update comment.
+PUT localhost:8080/comments/2
+Host: localhost
+Content-Type: application/json
+
+{
+  "commentContent": "update comment"
+}
