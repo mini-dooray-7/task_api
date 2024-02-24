@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Set;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,7 +22,7 @@ public class CommentRestController {
     private final CommentService commentService;
 
     @GetMapping("/tasks/{taskId}")
-    public List<Comment> getComments(@PathVariable Long taskId) {
+    public Set<Comment> getComments(@PathVariable Long taskId) {
         return commentService.getComments(taskId);
     }
 

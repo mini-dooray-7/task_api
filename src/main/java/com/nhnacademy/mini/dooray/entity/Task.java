@@ -58,6 +58,6 @@ public class Task {
 
     public Task() {
         this.taskCreatedAt = LocalDateTime.now();
-        this.state = ProjectState.ACTIVE;
+        this.state = TaskState.ACTIVE;
     }
 }

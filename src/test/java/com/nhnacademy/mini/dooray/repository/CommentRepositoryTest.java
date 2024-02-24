@@ -15,15 +15,15 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-//@Transactional(propagation = Propagation.NOT_SUPPORTED)
 class CommentRepositoryTest {
     @Autowired
     TestEntityManager entityManager;
@@ -45,40 +45,40 @@ class CommentRepositoryTest {
         project.setProjectId(projectId);
         project.setProjectName("Sample Project");
         project.setProjectState(ProjectState.ACTIVE);
-        entityManager.merge(project);
+        entityManager.persist(project);
 
         Task task = new Task();
         task.setTaskId(taskId);
+        task.setUserId("user1");
         task.setTaskTitle("Sample Task");
         task.setTaskContent("Sample Task Content");
         task.setTaskCreatedAt(LocalDateTime.now());
         task.setState(TaskState.ACTIVE);
         task.setProject(project);
-        entityManager.merge(task);
+        entityManager.persist(task);
 
         Comment comment1 = new Comment();
         comment1.setCommentId(1L);
         comment1.setTask(task);
         comment1.setCommentContent("Comment 1");
-        entityManager.merge(comment1);
+        entityManager.persist(comment1);
 
         Comment comment2 = new Comment();
         comment2.setCommentId(2L);
         comment2.setTask(task);
         comment2.setCommentContent("Comment 2");
-        entityManager.merge(comment2);
+        entityManager.persist(comment2);
 
-        List<Comment> comments = new ArrayList<>();
+        Set<Comment> comments = new HashSet<>();
         comments.add(comment1);
         comments.add(comment2);
         task.setComments(comments);
-        entityManager.flush();
-        List<Comment> fetchedComments = commentRepository.findAllByTask_TaskId(taskId);
+//        entityManager.flush();
+        Set<Comment> fetchedComments = commentRepository.findAllByTask_TaskId(taskId);
 
         assertEquals(2, fetchedComments.size());
-        assertEquals("Comment 1", fetchedComments.get(0).getCommentContent());
-        assertEquals("Comment 2", fetchedComments.get(1).getCommentContent());
-
+        assertTrue(fetchedComments.contains(comment1));
+        assertTrue(fetchedComments.contains(comment2));
     }
 
     @Test
@@ -93,6 +93,7 @@ class CommentRepositoryTest {
 
         Task task = new Task();
         task.setTaskId(taskId);
+        task.setUserId("user1");
         task.setTaskTitle("Sample Task");
         task.setTaskContent("Sample Task Content");
         task.setTaskCreatedAt(LocalDateTime.now());
@@ -112,7 +113,7 @@ class CommentRepositoryTest {
         comment2.setCommentContent("Comment 2");
         entityManager.merge(comment2);
 
-        List<Comment> comments = new ArrayList<>();
+        Set<Comment> comments = new HashSet<>();
         comments.add(comment1);
         comments.add(comment2);
         task.setComments(comments);
@@ -136,6 +137,7 @@ class CommentRepositoryTest {
 
         Task task = new Task();
         task.setTaskId(taskId);
+        task.setUserId("user1");
         task.setTaskTitle("Sample Task");
         task.setTaskContent("Sample Task Content");
         task.setTaskCreatedAt(LocalDateTime.now());
@@ -155,7 +157,7 @@ class CommentRepositoryTest {
         comment2.setCommentContent("Comment 2");
         entityManager.merge(comment2);
 
-        List<Comment> comments = new ArrayList<>();
+        Set<Comment> comments = new HashSet<>();
         comments.add(comment1);
         comments.add(comment2);
         task.setComments(comments);
@@ -177,6 +179,7 @@ class CommentRepositoryTest {
 
         Task task = new Task();
         task.setTaskId(taskId);
+        task.setUserId("user1");
         task.setTaskTitle("Sample Task");
         task.setTaskContent("Sample Task Content");
         task.setTaskCreatedAt(LocalDateTime.now());
@@ -196,7 +199,7 @@ class CommentRepositoryTest {
         comment2.setCommentContent("Comment 2");
         entityManager.merge(comment2);
 
-        List<Comment> comments = new ArrayList<>();
+        Set<Comment> comments = new HashSet<>();
         comments.add(comment1);
         comments.add(comment2);
         task.setComments(comments);
@@ -225,6 +228,7 @@ class CommentRepositoryTest {
 
         Task task = new Task();
         task.setTaskId(taskId);
+        task.setUserId("user1");
         task.setTaskTitle("Sample Task");
         task.setTaskContent("Sample Task Content");
         task.setTaskCreatedAt(LocalDateTime.now());
@@ -244,7 +248,7 @@ class CommentRepositoryTest {
         comment2.setCommentContent("Comment 2");
         entityManager.merge(comment2);
 
-        List<Comment> comments = new ArrayList<>();
+        Set<Comment> comments = new HashSet<>();
         comments.add(comment1);
         comments.add(comment2);
         task.setComments(comments);
@@ -268,6 +272,7 @@ class CommentRepositoryTest {
 
         Task task = new Task();
         task.setTaskId(taskId);
+        task.setUserId("user1");
         task.setTaskTitle("Sample Task");
         task.setTaskContent("Sample Task Content");
         task.setTaskCreatedAt(LocalDateTime.now());
@@ -287,7 +292,7 @@ class CommentRepositoryTest {
         comment2.setCommentContent("Comment 2");
         entityManager.merge(comment2);
 
-        List<Comment> comments = new ArrayList<>();
+        Set<Comment> comments = new HashSet<>();
         comments.add(comment1);
         comments.add(comment2);
         task.setComments(comments);

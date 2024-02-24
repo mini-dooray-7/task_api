@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Set;
 
-@Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 //    @Query("select c from Comment c where c.task.taskId = :taskId")
-    List<Comment> findAllByTask_TaskId(Long taskId);
+    Set<Comment> findAllByTask_TaskId(Long taskId);
 }

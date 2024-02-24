@@ -5,10 +5,10 @@ import com.nhnacademy.mini.dooray.entity.Task;
 import com.nhnacademy.mini.dooray.request.CommentPostDto;
 import com.nhnacademy.mini.dooray.request.UpdateCommentDto;
 
-import java.util.List;
+import java.util.Set;
 
 public interface CommentService {
-    List<Comment> getComments(Long taskId);
+    Set<Comment> getComments(Long taskId);
 
     Comment getComment(Long id);
 
