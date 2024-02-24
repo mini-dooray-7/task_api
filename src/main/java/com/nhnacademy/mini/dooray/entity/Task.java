@@ -1,6 +1,7 @@
 package com.nhnacademy.mini.dooray.entity;
 
 import com.nhnacademy.mini.dooray.domain.ProjectState;
+import com.nhnacademy.mini.dooray.domain.TaskState;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -37,7 +38,7 @@ public class Task {
     private LocalDateTime taskCreatedAt;
 
     @Column(name = "task_state")
-    private ProjectState state;
+    private TaskState state;
 
     @OneToMany(mappedBy = "task")
     private List<Comment> comments;

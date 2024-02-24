@@ -16,7 +16,7 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 @Service
-public class ProjectService implements BaseService {
+public class ProjectService {
     private final ProjectRepository projectRepository;
 
     public List<Project> getProjects() {
