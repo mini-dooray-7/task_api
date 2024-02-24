@@ -1,39 +1,21 @@
 package com.nhnacademy.mini.dooray.service;
 
+import com.nhnacademy.mini.dooray.dto.TaskDto;
+import com.nhnacademy.mini.dooray.entity.Project;
 import com.nhnacademy.mini.dooray.entity.Task;
-import com.nhnacademy.mini.dooray.repository.TaskRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.nhnacademy.mini.dooray.request.TaskPostDto;
 
 import java.util.List;
+import java.util.Set;
 
-@RequiredArgsConstructor
-@Service
-public class TaskService {
-    private final TaskRepository taskRepository;
+public interface TaskService {
+    void save(Project project, TaskPostDto task);
 
-    public Task save(Task task) {
-        return taskRepository.save(task);
-    }
+    TaskDto getTaskDto(Long id);
 
-    public Task getTaskById(Long id) {
-        return taskRepository.findById(id).orElse(null);
-    }
+    Task getTask(Long id);
 
-    public List<Task> getTasksByProjectId(Long projectId) {
-        return taskRepository.findAllByProjectId(projectId);
-    }
+    List<Task> getTasks(Long projectId);
 
-    public void deleteTask(Long id) {
-        taskRepository.deleteById(id);
-    }
-
-//    public Task updateTask(Long id, Task updatedTask) {
-//        return taskRepository.findById(id).map(task -> {
-//          task.setName(updatedTask.getName());
-//          task.setDescription(updatedTask.getDescription());
-//          task.setDueDate(updatedTask.getDueDate());
-//          return taskRepository.save(task);
-//        }).orElseThrow(() -> new IllegalArgumentException("Task not found"));
-//    }
+    void deleteTask(Long id);
 }

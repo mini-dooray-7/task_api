@@ -1,0 +1,33 @@
+POST localhost:8080/tasks/projects/1
+Host: localhost
+Content-Type: application/json
+
+{
+  "userId":"user2",
+  "taskTitle":"task1",
+  "taskContent":"message"
+}
+
+###
+POST localhost:8080/comments/tasks/1
+Host: localhost
+Content-Type: application/json
+
+{
+  "commentUserId": "user1",
+  "commentContent": "some text"
+}
+
+###
+POST localhost:8080/comments/tasks/1
+Host: localhost
+Content-Type: application/json
+
+{
+"commentUserId": "user1",
+"commentContent": "some texttttt"
+}
+
+### get task.
+GET localhost:8080/tasks/1
+Host: localhost

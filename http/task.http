@@ -1,15 +1,27 @@
 ### post task.
 
-POST localhost:8080/tasks/project/1
+POST localhost:8080/tasks/projects/1
 Host: localhost
 Content-Type: application/json
 
 {
-  "taskUserId":"tester",
+  "userId":"user2",
   "taskTitle":"task1",
   "taskContent":"message"
 }
 
 
+### get tasks, 1번 project에 있는 모든 task 들고온다.
+GET localhost:8080/projects/1
+Host: localhost
+
 ### get task.
-GET localhost:8080/projects/
+GET localhost:8080/tasks/1
+Host: localhost
+
+### delete task, 모든 comment도 삭제되는지 간단하게 확인.
+DELETE localhost:8080/tasks/1
+Host: localhost
+
+
+### update.

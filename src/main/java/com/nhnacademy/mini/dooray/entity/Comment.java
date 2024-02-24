@@ -1,10 +1,13 @@
 package com.nhnacademy.mini.dooray.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import org.apache.logging.log4j.util.Strings;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -16,10 +19,16 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long commentId;
 
-    @ManyToOne
+    @Column(name = "comment_user_id")
+    private String commentUserId;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "task_id")
+    @JsonBackReference
     private Task task;
 
+    @NotNull
     @Column(name = "comment_content")
-    private String commentContent;
+    private String commentContent = Strings.EMPTY;
 }

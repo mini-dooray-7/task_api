@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TaskPostDto {
-    private String userID;
+    private String userId;
     private String taskTitle;
     private String taskContent;
 }
