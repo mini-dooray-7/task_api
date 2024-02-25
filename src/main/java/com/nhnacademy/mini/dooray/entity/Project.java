@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -26,19 +27,16 @@ public class Project {
     @Column(name = "project_state")
     private ProjectState projectState;
 
-    @Column(name = "project_member")
-    @OneToMany(mappedBy = "project")
-    private List<ProjectMember> projectMembers;
-
-    @Column(name = "milestone")
+//    @Column(name = "project_member")
+//    @OneToMany(mappedBy = "project")
+//    private List<ProjectMember> projectMembers;
+//
     @OneToMany(mappedBy = "project", orphanRemoval = true)
     private List<Milestone> milestones;
+//
+//    @OneToMany(mappedBy = "project", orphanRemoval = true)
+//    private List<Tag> tags;
 
-    @Column(name = "tag")
     @OneToMany(mappedBy = "project", orphanRemoval = true)
-    private List<Tag> tags;
-
-    @Column(name = "task")
-    @OneToMany(mappedBy = "project", orphanRemoval = true)
-    private List<Task> tasks;
+    private Set<Task> tasks;
 }

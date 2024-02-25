@@ -31,7 +31,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskDto getTaskDto(Long id) {
-        return taskRepository.findTaskDtoById11(id);
+        return taskRepository.findTaskDtoById(id);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getTasks(Long projectId) {
+    public List<TaskDto> getTasks(Long projectId) {
         return taskRepository.findAllByProjectId(projectId);
     }
 

@@ -24,4 +24,16 @@ DELETE localhost:8080/tasks/1
 Host: localhost
 
 
-### update.
+### add task member
+POST localhost:8080/tasks/5/members
+Host: localhost
+Content-Type: application/json
+
+{
+  "taskUserId": "user1",
+  "taskUserRole": "ADMIN"
+}
+
+### delete task member
+DELETE localhost:8080/tasks/5/members/user1
+Host: localhost

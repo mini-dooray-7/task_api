@@ -52,6 +52,5 @@ public class Task {
     private ProjectState state = ProjectState.ACTIVE;
 
     @OneToMany(mappedBy = "task", orphanRemoval = true)
-    @JsonManagedReference
     private Set<Comment> comments;
 }

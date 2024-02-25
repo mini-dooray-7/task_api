@@ -9,11 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     @Query("select t from Task t where t.project.projectId = :projectId")
-    List<Task> findAllByProjectId(@Param("projectId") Long projectId);
+    List<TaskDto> findAllByProjectId(@Param("projectId") Long projectId);
 
     @Query("select " +
             "t.taskId as taskId, " +
@@ -24,5 +23,5 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
             "t.state as state " +
             "from Task t " +
             "where t.taskId = :id")
-    TaskDto findTaskDtoById11(@Param("id") Long id);
+    TaskDto findTaskDtoById(@Param("id") Long id);
 }

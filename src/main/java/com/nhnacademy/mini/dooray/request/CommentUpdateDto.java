@@ -7,6 +7,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UpdateCommentDto {
+public class CommentUpdateDto {
     private String commentContent;
 }

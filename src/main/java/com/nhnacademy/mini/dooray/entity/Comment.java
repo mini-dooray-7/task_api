@@ -1,6 +1,5 @@
 package com.nhnacademy.mini.dooray.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
@@ -25,7 +24,6 @@ public class Comment {
     @NotNull
     @ManyToOne
     @JoinColumn(name = "task_id")
-    @JsonBackReference
     private Task task;
 
     @NotNull

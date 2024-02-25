@@ -6,7 +6,7 @@ import com.nhnacademy.mini.dooray.exception.NotFoundCommentException;
 import com.nhnacademy.mini.dooray.repository.CommentRepository;
 import com.nhnacademy.mini.dooray.entity.Comment;
 import com.nhnacademy.mini.dooray.request.CommentPostDto;
-import com.nhnacademy.mini.dooray.request.UpdateCommentDto;
+import com.nhnacademy.mini.dooray.request.CommentUpdateDto;
 import com.nhnacademy.mini.dooray.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -20,11 +20,6 @@ import java.util.List;
 @Service
 public class CommentServiceImpl implements CommentService {
     private final CommentRepository commentRepository;
-
-    @Override
-    public List<Comment> getComments(Long taskId) {
-        return commentRepository.findAllCommentByTaskId(taskId);
-    }
 
     @Override
     public List<CommentDto> getCommentDto(Long taskId) {
@@ -48,16 +43,16 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void delete(Long id) {
-        commentRepository.deleteById(id);
+        if (commentRepository.existsById(id)) commentRepository.deleteById(id);
     }
 
     @Override
-    public void updateComment(Long id, UpdateCommentDto updateCommentDto) {
+    public void updateComment(Long id, CommentUpdateDto commentUpdateDto) {
         Comment res = commentRepository.findById(id).orElse(null);
 
         if (res == null) throw new NotFoundCommentException();
 
-        res.setCommentContent(updateCommentDto.getCommentContent());
+        res.setCommentContent(commentUpdateDto.getCommentContent());
         commentRepository.save(res);
     }
 }

@@ -9,11 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
-    @Query("select c from Comment c where c.task.taskId = :taskId")
-    List<Comment> findAllCommentByTaskId(@Param("taskId") Long taskId);
-
     @Query("select c.commentId as commentId, c.commentUserId as commentUserId, c.commentContent as commentContent " +
             "from Comment c where c.task.taskId = :id")
     List<CommentDto> findCommentsByTaskId(@Param("id") Long id);
