@@ -23,7 +23,7 @@ public class Comment {
     private String commentUserId;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "task_id")
     @JsonBackReference
     private Task task;

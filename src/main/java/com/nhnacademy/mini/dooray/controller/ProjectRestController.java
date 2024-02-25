@@ -5,6 +5,7 @@ import com.nhnacademy.mini.dooray.request.ProjectPostRequest;
 import com.nhnacademy.mini.dooray.request.ProjectUpdateRequest;
 import com.nhnacademy.mini.dooray.service.ProjectService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +28,8 @@ public class ProjectRestController {
 
     @PostMapping
     public void postProject(ProjectPostRequest projectPostRequest) {
-        Project project = service.toProject(projectPostRequest);
+        Project project = new Project();
+        BeanUtils.copyProperties(projectPostRequest, project);
 
         service.save(project);
     }
@@ -37,10 +39,13 @@ public class ProjectRestController {
         service.delete(id);
     }
 
-    @PutMapping
-    public void updateProject(@RequestBody ProjectUpdateRequest projectUpdateRequest) {
-        // todo add update code.
-    }
+    @PutMapping("/{id}")
+    public void updateProject(@PathVariable Long id, @RequestBody ProjectUpdateRequest projectUpdateRequest) {
+        Project project = getProject(id);
 
-//    @GetMapping
+        if (project == null) throw new RuntimeException("존재하지 않는 project 입니다.");
+
+        BeanUtils.copyProperties(projectUpdateRequest, project);
+        service.update(project);
+    }
 }

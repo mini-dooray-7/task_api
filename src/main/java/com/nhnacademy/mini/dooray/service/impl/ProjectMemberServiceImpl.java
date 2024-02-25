@@ -1,9 +1,10 @@
-package com.nhnacademy.mini.dooray.service;
+package com.nhnacademy.mini.dooray.service.impl;
 
 import com.nhnacademy.mini.dooray.dto.ProjectMemberPostDto;
 import com.nhnacademy.mini.dooray.entity.Project;
 import com.nhnacademy.mini.dooray.entity.ProjectMember;
 import com.nhnacademy.mini.dooray.repository.ProjectMemberRepository;
+import com.nhnacademy.mini.dooray.service.ProjectMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
